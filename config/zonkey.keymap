@@ -4,7 +4,7 @@
 #include <dt-bindings/zmk/pointing.h>
 
 #define ZMK_POINTING_DEFAULT_SCRL_VAL 100
-#define MOUSE 6
+//#define MOUSE 6
 #define JP_DQUOTE       AT                // "
 #define JP_AMPERSAND    CARET             // &
 #define JP_QUOTE        AMPERSAND         // '
@@ -30,6 +30,16 @@
 #define JP_HANZEN       GRAVE             // 半角/全角
 #define JP_BSLH  INT1         // (backslash)
 
+// レイヤーの定義
+
+#define DEFAULT 0
+#define SYMBOL	1
+#define MOUSE_CTRL	2
+#define NUM_FUNCTION	3
+#define MOUSE	4
+#define SCROLL	5
+#define MODIFIER_BT	6
+
 &mt {
     flavor = "balanced";
     quick-tap-ms = <0>;
@@ -37,6 +47,66 @@
 
 / {
     combos { compatible = "zmk,combos"; };
+
+    tab {
+        bindings = <&kp TAB>;
+        key-positions = <11 12>;
+    };
+
+    shift_tab {
+        bindings = <&kp LS(TAB)>;
+        key-positions = <12 13>;
+    };
+
+    mb4 {
+        bindings = <&mkp MB4>;
+        key-positions = <6 7>;
+    };
+
+    mb5 {
+        bindings = <&mkp MB5>;
+        key-positions = <7 8>;
+    };
+
+    semicolon {
+        bindings = <&kp SEMICOLON>;
+        key-positions = <18 19>;
+    };
+
+    colon {
+        bindings = <&kp COLON>;
+        key-positions = <19 20>;
+    };
+
+    underscore {
+        bindings = <&kp UNDERSCORE>;
+        key-positions = <20 21>;
+    };
+
+    comma {
+        bindings = <&kp COMMA>;
+        key-positions = <30 31>;
+    };
+
+    dot {
+        bindings = <&kp DOT>;
+        key-positions = <31 32>;
+    };
+
+    asterisk {
+        bindings = <&kp ASTERISK>;
+        key-positions = <17 18>;
+    };
+
+    plus {
+        bindings = <&kp PLUS>;
+        key-positions = <29 30>;
+    };
+
+    mb3 {
+        bindings = <&mkp MCLK>;
+        key-positions = <6 8 7>;
+    };
 
     mo2: mo2 {
         compatible = "zmk,behavior-mod-morph";
@@ -184,6 +254,38 @@
 
             tap-ms = <20>;
         };
+
+        mouse_scroll: mouse_wheel_scrl {
+            compatible = "zmk,behavior-sensor-rotate-var";
+            #sensor-binding-cells = <2>;
+            bindings = <&msc>, <&msc>;
+
+            // 追加: スクロールのタップ時間を設定 (20ms)
+
+            tap-ms = <20>;
+        };
+
+        long_hold_mod_tap: long_hold_mod_tap {
+            compatible = "zmk,behavior-hold-tap";
+            label = "LONG_HOLD_MOD_TAP";
+            bindings = <&kp>, <&kp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <350>;
+            quick-tap-ms = <0>;
+            require-prior-idle-ms = <0>;
+            flavor = "tap-preferred";
+        };
+
+        medium_hold_mod_tap: medium_hold_mod_tap {
+            compatible = "zmk,behavior-hold-tap";
+            label = "MEDIUM_HOLD_MOD_TAP";
+            bindings = <&kp>, <&kp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <250>;
+            flavor = "balanced";
+        };
     };
 
     keymap {
@@ -192,13 +294,13 @@
         default_layer {
             // -----------------------------------------------------------------------------------------
             // |  Q  |  W  |  E  |  R  |  T  |                        |  Y  |  U   |  I  |  O  |  P  | 
-            // |  A  |  S  |  D  |  F  |  G  |LS(LG(S))|        　 | - |  H  |  J   |  K  |  L  |  `  | 
+            // |  A  |  S  |  D  |  F  |  G  |LS(LG(S))|        　 | ` |  H  |  J   |  K  |  L  |  -  | 
             // |SHIFT|  Z  |  X  |  C  |  V  |  B  |           | ; |  N  |  M   |  ,  |  .  |  /  | 
             // | CTRL | WIN | ALT |HENKAN|SPACE|MUHENKAN|       | BS | ENT |      　　　　       | DEL |           
 
             bindings = <
 &kp Q           &kp W         &kp E         &kp R             &kp T                                             &kp Y          &kp U      &kp I      &kp O    &kp P
-&kp A           &kp S         &kp D         &kp F             &kp G        &kp LS(LG(S))         &kp MINUS      &kp H          &kp J      &kp K      &kp L    &kp SQT
+&kp A           &kp S         &kp D         &kp F             &kp G        &kp LS(LG(S))         &kp SQT        &kp H          &kp J      &kp K      &kp L    &kp MINUS
 &kp LEFT_SHIFT  &kp Z         &kp X         &lt 6 C           &lt 5 V      &lt 4 B               &kp SEMICOLON  &kp N          &kp M      &kp COMMA  &kp DOT  &kp SLASH
 &kp LCTRL       &kp LEFT_WIN  &kp LEFT_ALT  &lt 3 INT_HENKAN  &lt 2 SPACE  &lt 1 INT_MUHENKAN                   &kp BACKSPACE  &kp ENTER                                 &kp DEL
             >;
