@@ -48,66 +48,67 @@
 };
 
 / {
-    combos { compatible = "zmk,combos"; };
+    combos { compatible = "zmk,combos";
 
-    tab {
-        bindings = <&kp TAB>;
-        key-positions = <11 12>;
-    };
+        tab {
+            bindings = <&kp TAB>;
+            key-positions = <11 12>;
+        };
 
-    shift_tab {
-        bindings = <&kp LS(TAB)>;
-        key-positions = <12 13>;
-    };
+        shift_tab {
+            bindings = <&kp LS(TAB)>;
+            key-positions = <12 13>;
+        };
 
-    mb4 {
-        bindings = <&mkp MB4>;
-        key-positions = <6 7>;
-    };
+        mb4 {
+            bindings = <&mkp MB4>;
+            key-positions = <6 7>;
+        };
 
-    mb5 {
-        bindings = <&mkp MB5>;
-        key-positions = <7 8>;
-    };
+        mb5 {
+            bindings = <&mkp MB5>;
+            key-positions = <7 8>;
+        };
 
-    semicolon {
-        bindings = <&kp SEMICOLON>;
-        key-positions = <18 19>;
-    };
+        semicolon {
+            bindings = <&kp SEMICOLON>;
+            key-positions = <18 19>;
+        };
 
-    colon {
-        bindings = <&kp COLON>;
-        key-positions = <19 20>;
-    };
+        colon {
+            bindings = <&kp COLON>;
+            key-positions = <19 20>;
+        };
 
-    underscore {
-        bindings = <&kp UNDERSCORE>;
-        key-positions = <20 21>;
-    };
+        underscore {
+            bindings = <&kp UNDERSCORE>;
+            key-positions = <20 21>;
+        };
 
-    comma {
-        bindings = <&kp COMMA>;
-        key-positions = <30 31>;
-    };
+        comma {
+            bindings = <&kp COMMA>;
+            key-positions = <30 31>;
+        };
 
-    dot {
-        bindings = <&kp DOT>;
-        key-positions = <31 32>;
-    };
+        dot {
+            bindings = <&kp DOT>;
+            key-positions = <31 32>;
+        };
 
-    asterisk {
-        bindings = <&kp ASTERISK>;
-        key-positions = <17 18>;
-    };
+        asterisk {
+            bindings = <&kp ASTERISK>;
+            key-positions = <17 18>;
+        };
 
-    plus {
-        bindings = <&kp PLUS>;
-        key-positions = <29 30>;
-    };
+        plus {
+            bindings = <&kp PLUS>;
+            key-positions = <29 30>;
+        };
 
-    mb3 {
-        bindings = <&mkp MCLK>;
-        key-positions = <6 8 7>;
+        mb3 {
+            bindings = <&mkp MCLK>;
+            key-positions = <6 8 7>;
+        };
     };
 
     mo2: mo2 {
